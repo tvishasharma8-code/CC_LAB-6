@@ -1,0 +1,15 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Clean old lists and allow repo metadata change
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    apt-get update --allow-releaseinfo-change && \
+    apt-get install -y --no-install-recommends \
+        docker.io \
+        make \
+        g++ \
+        curl && \
+    rm -rf /var/lib/apt/lists/*
+
+USER jenkins
