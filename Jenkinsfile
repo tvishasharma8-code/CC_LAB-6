@@ -31,7 +31,8 @@ pipeline {
                   nginx
                 
                 docker cp CC_LAB-6/nginx/default.conf nginx-lb:/etc/nginx/conf.d/default.conf
-                docker exec nginx-lb nginx -s reload
+                sleep 2
+                docker exec nginx-lb nginx -s reload || docker exec nginx-lb nginx
                 '''
             }
         }
